@@ -1,10 +1,30 @@
-﻿venv/
+﻿# Virtual environments
+venv/
 env/
+ENV/
+.venv
+.env
+
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# Large files
 *.dll
 *.lib
 *.so
 *.pth
 *.pt
-.env
+*.bin
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
