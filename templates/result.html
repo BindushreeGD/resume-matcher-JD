@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Match Results</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#eef2f3; padding: 40px; }
+    .card { max-width: 900px; margin: auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.08); }
+    h2 { text-align:center; color:#333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; font-size:14px; }
+    th { background: #f0f0f0; }
+    .score { font-weight: bold; }
+    .label { font-weight: bold; }
+    .strong { color: green; }
+    .moderate { color: orange; }
+    .weak { color: red; }
+    .error { color:red; font-weight:bold; text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Matching Results</h2>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% else %}
+      <table>
+        <tr>
+          <th>File</th>
+          <th>Score</th>
+          <th>Label</th>
+          <th>Note</th>
+        </tr>
+        {% for r in results %}
+          <tr>
+            <td>{{ r.filename }}</td>
+            <td class="score">
+              {% if r.percentage is not none %}
+                {{ r.percentage }}%
+              {% else %}
+                —
+              {% endif %}
+            </td>
+            <td class="label {% if r.label == 'Strong match' %}strong{% elif r.label == 'Moderate match' %}moderate{% else %}weak{% endif %}">
+              {{ r.label }}
+            </td>
+            <td>{{ r.note }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+    <p style="text-align:center; margin-top:20px;">
+      <a href="/">🔄 Check another</a>
+    </p>
+  </div>
+</body>
+</html>
